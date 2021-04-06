@@ -2,7 +2,7 @@
 
 Base on [@karolyi/py3-validate-email](https://github.com/karolyi/py3-validate-email)
 
-*email-validate is a package for Python that check if an email is valid, not blacklisted, properly formatted and really exists. *
+**email-validate is a package for Python that check if an email is valid, not blacklisted, properly formatted and really exists.**
 
 This module is for Python 3.6 and above!
 
