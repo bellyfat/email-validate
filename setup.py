@@ -11,7 +11,7 @@ setup(
     author='CPILab',
     author_email='hello@containerpi.com',
     description=('Email validator with regex, blacklisted domains and SMTP checking.'),
-    long_description=Path(__file__).parent.joinpath('README.rst').read_text(),
+    long_description=Path(__file__).parent.joinpath('README.md').read_text(),
     long_description_content_type='text/x-rst',
     keywords='email validation verification mx verify',
     url='https://github.com/containerpi/email_validate',
