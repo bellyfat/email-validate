@@ -57,7 +57,7 @@ The function `validate_email()` returns the following results:
 `None`
   None of the requested checks failed, but at least one of them yielded an ambiguous result. Currently, the SMTP check is the only check which can actually yield an ambigous result.
 
-### Getting more information
+## Getting more information
 
 The function `validate_email_or_fail()` works exactly like `validate_email`, except that it raises an exception in the case of validation failure and ambiguous result instead of returning `False` or `None`, respectively.
 
@@ -66,7 +66,6 @@ All these exceptions descend from `EmailValidationError`. Please see below for t
 Please note that `SMTPTemporaryError` indicates an ambigous check result rather than a check failure, so if you use `validate_email_or_fail()`, you probably want to catch this exception.
 
 ### The checks
-
 
 By default, all checks are enabled, but each of them can be disabled by one of the `check_...` parameters. Note that, however, `check_smtp` implies `check_dns`.
 
@@ -85,7 +84,6 @@ A list of such domains is maintained at https://github.com/martenson/disposable-
 `validate_email_or_fail()` raises `DomainBlacklistedError` if the email address belongs to a blacklisted domain.
 
 #### `check_dns`
-
 
 Check whether there is a valid list of servers responsible for delivering emails to the given email address.
 
@@ -140,11 +138,11 @@ On failure of this check or on ambiguous result, `validate_email_or_fail()` rais
 
 All of the above three exceptions provide further detail about the error response(s) in the exception's instance variable `error_messages`.
 
-### Auto-updater
+### Update data source
 
 The package contains an auto-updater for downloading and updating the built-in blacklist.txt. It will run on each module load (and installation), but will try to update the content only if the file is older than 5 days, and if the content is not the same that's already downloaded.
 
-The update can be triggered manually::
+The update can be triggered manually:
 ```
 from validate_email.updater import update_builtin_blacklist
 
@@ -157,6 +155,5 @@ update_builtin_blacklist(force: bool = False, background: bool = True,
 `background`: starts the update in a ``Thread`` so it won't make your code hang while it's updating. If you set this to true, the function will return the Thread used for starting the update so you can ``join()`` it if necessary.
 
 `callback`: An optional `Callable` (function/method) to be called when the update is done.
-
 
 ### [Read the FAQ](https://github.com/containerpi/email-validate/blob/master/FAQ.md)
