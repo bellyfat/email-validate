@@ -1,0 +1,7 @@
+*.pyc
+validate_email/data
+build
+dist
+MANIFEST
+*.egg-info
+venv
