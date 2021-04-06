@@ -27,7 +27,7 @@ is_valid = validate_email(email_address='example@example.com', check_format=True
 
 `check_format`: check whether the email address has a valid structure; defaults to `True`
 
-`check_blacklist`: check the email against the blacklist of domains downloaded from https://github.com/martenson/disposable-email-domains; defaults to `True`
+`check_blacklist`: check the email against the blacklist of domains downloaded from [DadouData](https://dadoudata.com) temporary email data(daily update!!!); defaults to `True`
 
 `check_dns`: check the DNS mx-records, defaults to `True`
 
@@ -79,7 +79,7 @@ Check whether the given email address conforms to the general format requirement
 
 Check whether the domain part of the given email address (the part behind the "@") is known as a disposable and temporary email address domain. These are often used to register dummy users in order to spam or abuse some services.
 
-A list of such domains is maintained at ContainerPi temporary email data(daily update!!!), and this module uses that list.
+A list of such domains is maintained at [DadouData](https://dadoudata.com) temporary email data(daily update!!!), and this module uses that list.
 
 `validate_email_or_fail()` raises `DomainBlacklistedError` if the email address belongs to a blacklisted domain.
 
