@@ -15,4 +15,4 @@ setup(
     long_description_content_type='text/x-rst',
     keywords='email validation verification mx verify',
     url='https://github.com/containerpi/email_validate',
-    license='MIT')
+    license='LGPL')
