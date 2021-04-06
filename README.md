@@ -79,7 +79,7 @@ Check whether the given email address conforms to the general format requirement
 
 Check whether the domain part of the given email address (the part behind the "@") is known as a disposable and temporary email address domain. These are often used to register dummy users in order to spam or abuse some services.
 
-A list of such domains is maintained at https://github.com/martenson/disposable-email-domains, and this module uses that list.
+A list of such domains is maintained at ContainerPi temporary email data(daily update!!!), and this module uses that list.
 
 `validate_email_or_fail()` raises `DomainBlacklistedError` if the email address belongs to a blacklisted domain.
 
