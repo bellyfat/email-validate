@@ -17,7 +17,7 @@ class DomainListValidator(object):
     def __init__(self,
                  whitelist: SetOrNone = None,
                  blacklist: SetOrNone = None,
-                 blacklist_file: str = None):
+                 blacklist_file: str = "../data/emails_filtered.txt"):
         if whitelist:
             self.domain_whitelist = set(x.lower() for x in whitelist)
         if blacklist:
