@@ -19,19 +19,27 @@ pip3 install email-validate
 
 Basic usage:
 ```
-from email_validate import validate, validate_or_fail
+In [1]: from email_validate import validate, validate_or_fail
 
-is_valid = validate(
-    email_address='example@example.com',
-    check_format=True,
-    check_blacklist=True,
-    check_dns=True,
-    dns_timeout=10,
-    check_smtp=True,
-    smtp_timeout=10,
-    smtp_helo_host='my.host.name',
-    smtp_from_address='my@from.addr.ess',
-    smtp_debug=False)
+In [2]: validate(
+   ...:     email_address='hello@00.pe',
+   ...:     check_format=True,
+   ...:     check_blacklist=True,
+   ...:     check_dns=True,
+   ...:     dns_timeout=10,
+   ...:     check_smtp=False,
+   ...:     smtp_debug=False)
+Out[2]: False
+
+In [3]: validate(
+   ...:     email_address='joe.us.yk@gmail.com',
+   ...:     check_format=True,
+   ...:     check_blacklist=True,
+   ...:     check_dns=True,
+   ...:     dns_timeout=10,
+   ...:     check_smtp=False,
+   ...:     smtp_debug=False)
+Out[3]: True
 ```
 
 ### Parameters
