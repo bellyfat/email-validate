@@ -17,7 +17,7 @@ pip3 install email-validate
 
 Basic usage:
 ```
-from validate_email import validate
+from email_validate import validate, validate_or_fail
 
 is_valid = validate(
     email_address='example@example.com',
@@ -91,7 +91,7 @@ A list of such domains is maintained at [DadouData](http://dadoudata.com) tempor
 
 `validate_or_fail()` raises `DomainBlacklistedError` if the email address belongs to a blacklisted domain.
 
-#### `check_dns`
+#### **`check_dns`**
 
 Check whether there is a valid list of servers responsible for delivering emails to the given email address.
 
@@ -111,8 +111,7 @@ On failure of this check, `validate_or_fail()` raises one of the following excep
 
 **`NoValidMXError`** The nameserver lists MX records for the domain, but none of them is valid.
 
-
-#### `check_smtp`
+#### **`check_smtp`**
 
 Check whether the given email address exists by simulating an actual email delivery.
 
