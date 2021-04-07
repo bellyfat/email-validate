@@ -1,3 +1,8 @@
+1.1.0:
+- add github action for package build & release.
+- validate_email() -> validate() & validate_email_or_fail() -> validate_or_fail()
+- change domainblacklist datasource to dadoudata.com.
+
 1.0.0:
 - New major release with breaking changes! They are:
   - Parameter names for validate_email() and validate_email_or_fail() have changed:
