@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from logging import getLogger
 from typing import Optional
+from pathlib import Path
 
 from .email_address import EmailAddress
 from .exceptions import DomainBlacklistedError
@@ -18,7 +19,7 @@ class DomainListValidator(object):
             self,
             whitelist: SetOrNone = None,
             blacklist: SetOrNone = None,
-            blacklist_file: str = "data/emails_filtered.txt"):
+            blacklist_file: str = "emails_filtered.txt"):
         if whitelist:
             self.domain_whitelist = set(x.lower() for x in whitelist)
         if blacklist:
@@ -30,7 +31,9 @@ class DomainListValidator(object):
         '(Re)load our built-in blacklist.'
         LOGGER.debug(msg=f'(Re)loading blacklist from {blacklist_file}')
         try:
-            with open(blacklist_file) as fd:
+            DEFAULT_DATA_DIR = Path(__file__).resolve().parent.joinpath('data')
+            blacklist = DEFAULT_DATA_DIR.joinpath(blacklist_file)
+            with open(blacklist) as fd:
                 lines = fd.readlines()
         except FileNotFoundError:
             return
