@@ -43,12 +43,7 @@ def validate_or_fail(
     if check_format:
         regex_check(email_address=email_address)
     if check_blacklist:
-        print("----:1:----")
-        print(email_address)
-        print("----:2:----")
         state = domainlist_check(email_address=email_address)
-        print(state)
-        print("----:4:----")
         if not state:
             return True
     if not check_dns and not check_smtp:  # check_smtp implies check_dns.

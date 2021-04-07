@@ -41,14 +41,11 @@ class DomainListValidator(object):
 
     def __call__(self, email_address: EmailAddress) -> bool:
         'Do the checking here.'
-        print("check email prefix => {}".format(email_address.domain))
+        LOGGER.debug("check email prefix => {}".format(email_address.domain))
         if email_address.domain in self.domain_whitelist:
-            print("yes, in whitelist")
             return True
         if email_address.domain in self.domain_blacklist:
-            print("no, in blacklist")
             raise DomainBlacklistedError
-        print("yes, in other")
         return True
 
 
