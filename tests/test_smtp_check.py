@@ -3,10 +3,10 @@ from socket import timeout
 from unittest.case import TestCase
 from unittest.mock import patch
 
-from validate_email.email_address import EmailAddress
-from validate_email.exceptions import (
+from email_validate.email_address import EmailAddress
+from email_validate.exceptions import (
     AddressNotDeliverableError, SMTPCommunicationError, SMTPTemporaryError)
-from validate_email.smtp_check import _SMTPChecker, smtp_check
+from email_validate.smtp_check import _SMTPChecker, smtp_check
 
 
 class SMTPMock(_SMTPChecker):
@@ -68,7 +68,7 @@ class SMTPCheckTest(TestCase):
         ('RCPT', (550, b'RCPT TO failed'), AddressNotDeliverableError),
     ]
 
-    @patch(target='validate_email.smtp_check._SMTPChecker', new=SMTPMock)
+    @patch(target='email_validate.smtp_check._SMTPChecker', new=SMTPMock)
     def test_smtp_success(self):
         'Succeeds on successful SMTP conversation'
         self.assertTrue(
@@ -92,7 +92,7 @@ class SMTPCheckTest(TestCase):
                 self.assertEqual(error_info.code, reply[0])
                 self.assertEqual(error_info.text, reply[1].decode())
 
-    @patch(target='validate_email.smtp_check._SMTPChecker', new=SMTPMock)
+    @patch(target='email_validate.smtp_check._SMTPChecker', new=SMTPMock)
     def test_smtp_failure(self):
         'Fails on unsuccessful SMTP conversation.'
         for cmd, reply, exception in self.failures:

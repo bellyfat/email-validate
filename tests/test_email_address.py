@@ -1,8 +1,8 @@
 from unittest.case import TestCase
 
-from validate_email import validate_email
-from validate_email.email_address import EmailAddress
-from validate_email.exceptions import AddressFormatError
+from email_validate import validate
+from email_validate.email_address import EmailAddress
+from email_validate.exceptions import AddressFormatError
 
 
 class UserDomainTestCase(TestCase):
@@ -35,8 +35,8 @@ class UserDomainTestCase(TestCase):
             with self.assertRaises(AddressFormatError) as exc:
                 EmailAddress(address)
             self.assertTupleEqual(exc.exception.args, ())
-            # ...and indirectly by validate_email().
-            self.assertFalse(validate_email(address))
+            # ...and indirectly by validate().
+            self.assertFalse(validate(address))
 
 
 class IdnaTestCase(TestCase):
@@ -64,5 +64,5 @@ class IdnaTestCase(TestCase):
             with self.assertRaises(AddressFormatError) as exc:
                 EmailAddress(address)
             self.assertTupleEqual(exc.exception.args, ())
-            # ...and indirectly by validate_email().
-            self.assertFalse(validate_email(address))
+            # ...and indirectly by validate().
+            self.assertFalse(validate(address))

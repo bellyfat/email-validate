@@ -14,19 +14,19 @@ class DomainListValidator(object):
     domain_whitelist = set()
     domain_blacklist = set('localhost')
 
-    def __init__(self,
-                 whitelist: SetOrNone = None,
-                 blacklist: SetOrNone = None,
-                 blacklist_file: str = "../data/emails_filtered.txt"):
+    def __init__(
+            self,
+            whitelist: SetOrNone = None,
+            blacklist: SetOrNone = None,
+            blacklist_file: str = "data/emails_filtered.txt"):
         if whitelist:
             self.domain_whitelist = set(x.lower() for x in whitelist)
         if blacklist:
             self.domain_blacklist = set(x.lower() for x in blacklist)
         else:
-            self.reload_blacklist(blacklist_file=blacklist_file)
+            self.reload_blacklist(blacklist_file)
 
-    @property
-    def reload_blacklist(self, blacklist_file=None):
+    def reload_blacklist(self, blacklist_file):
         '(Re)load our built-in blacklist.'
         LOGGER.debug(msg=f'(Re)loading blacklist from {blacklist_file}')
         try:
@@ -46,9 +46,3 @@ class DomainListValidator(object):
 
 
 domainlist_check = DomainListValidator()
-
-
-if __name__ == '__main__':
-    email = "abc@fake.com"
-    dlv = DomainListValidator()
-    dlv(email_address=email)

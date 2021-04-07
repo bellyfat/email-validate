@@ -1,8 +1,8 @@
 from unittest.case import TestCase
 
-from validate_email.email_address import EmailAddress
-from validate_email.exceptions import AddressFormatError
-from validate_email.regex_check import regex_check
+from email_validate.email_address import EmailAddress
+from email_validate.exceptions import AddressFormatError
+from email_validate.regex_check import regex_check
 
 VALID_EXAMPLES = [
     'email@domain.com',  # basic valid email

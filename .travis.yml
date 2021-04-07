@@ -15,10 +15,10 @@ install:
   - python -m pip install -U pip wheel setuptools
   - python -m pip install -U isort flake8
   - python -Wd setup.py sdist -v
-  - python -Wd -m pip install -v dist/py3-validate-email-*.tar.gz
+  - python -Wd -m pip install -v dist/email-validate-*.tar.gz
 
 # command to run tests
 script:
   - python -m isort -c --skip-glob=venv .
-  - python -m flake8 tests/ validate_email/ setup.py
+  - python -m flake8 src/tests/ src/email_validate/ setup.py
   - python -m unittest discover -v -s tests

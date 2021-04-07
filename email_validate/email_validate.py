@@ -13,7 +13,7 @@ from .smtp_check import smtp_check
 
 LOGGER = getLogger(name=__name__)
 
-__all__ = ['validate_email', 'validate_email_or_fail']
+__all__ = ['validate', 'validate_or_fail']
 __doc__ = """\
 Verify the given email address by determining the SMTP servers
 responsible for the domain and then asking them to deliver an email to
@@ -27,7 +27,7 @@ simply accept everything and send a bounce notification later. Hence, a
 """
 
 
-def validate_email_or_fail(
+def validate_or_fail(
     email_address: str, *, check_format: bool = True,
     check_blacklist: bool = True, check_dns: bool = True,
     dns_timeout: float = 10, check_smtp: bool = True,
@@ -60,7 +60,7 @@ def validate_email_or_fail(
         from_address=smtp_from_address, debug=smtp_debug)
 
 
-def validate_email(email_address: str, **kwargs):
+def validate(email_address: str, **kwargs):
     """
     Return `True` or `False` depending if the email address exists
     or/and can be delivered.
@@ -68,7 +68,7 @@ def validate_email(email_address: str, **kwargs):
     Return `None` if the result is ambigious.
     """
     try:
-        return validate_email_or_fail(email_address, **kwargs)
+        return validate_or_fail(email_address, **kwargs)
     except SMTPTemporaryError as error:
         LOGGER.info(msg=f'Validation for {email_address!r} ambigious: {error}')
         return
