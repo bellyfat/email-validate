@@ -13,7 +13,7 @@ from .smtp_check import smtp_check
 
 LOGGER = getLogger(name=__name__)
 
-__all__ = ['validate', 'validate_or_fail']
+__all__ = ['validate', 'validate_or_fail', 'updater']
 __doc__ = """\
 Verify the given email address by determining the SMTP servers
 responsible for the domain and then asking them to deliver an email to
@@ -77,3 +77,24 @@ def validate(email_address: str, **kwargs):
     except EmailValidationError as error:
         LOGGER.info(msg=f'Validation for {email_address!r} failed: {error}')
         return False
+
+
+def updater(auth_key=None):
+    """
+    TODO:
+    * data checksum
+    * download & periodic update
+    ---
+    f = open('file.txt', 'r+')
+    f.truncate(0)   # need '0' when using r+
+    """
+    if not auth_key:
+        output = """
+        ++++++++++++++++++++++++++++++++++++++++\n
+        This is DadouData's public open data,\n
+        you need to obtain an authentication \n
+        key before download it.\n
+        WEBSITE: https://dadoudata.com\n
+        ++++++++++++++++++++++++++++++++++++++++"""
+        print(output)
+    print("todo")
