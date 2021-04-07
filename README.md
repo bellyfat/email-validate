@@ -1,5 +1,7 @@
 # email-validate
 
+[![PyPI publish for email validate](https://github.com/containerpi/email_validate/actions/workflows/build.yaml/badge.svg)](https://github.com/containerpi/email_validate/actions/workflows/build.yaml)
+
 Base on [@karolyi/py3-validate-email](https://github.com/karolyi/py3-validate-email)
 
 **email-validate is a package for Python that check if an email is valid, not blacklisted, properly formatted and really exists.**
@@ -155,6 +157,10 @@ update_builtin_blacklist(force: bool = False, background: bool = True,
 `background`: starts the update in a ``Thread`` so it won't make your code hang while it's updating. If you set this to true, the function will return the Thread used for starting the update so you can ``join()`` it if necessary.
 
 `callback`: An optional `Callable` (function/method) to be called when the update is done.
+
+### TODO
+
+* fixed domainblacklist data source auto update error.
 
 
 ### [Read the FAQ](https://github.com/containerpi/email-validate/blob/master/FAQ.md)
