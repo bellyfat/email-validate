@@ -49,6 +49,8 @@ def validate_or_fail(
         state = domainlist_check(email_address=email_address)
         print(state)
         print("----:4:----")
+        if state:
+            return False
     if not check_dns and not check_smtp:  # check_smtp implies check_dns.
         return True
     mx_records = dns_check(email_address=email_address, timeout=dns_timeout)
