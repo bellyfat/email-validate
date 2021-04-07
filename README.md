@@ -8,17 +8,28 @@ This module is for Python 3.6 and above!
 
 ## INSTALLATION
 
-You can install the package with pip::
+You can install the package with pip:
 ```
-python -m pip install email-validate
+pip3 install email-validate
 ```
 
 ## USAGE
 
-Basic usage::
+Basic usage:
 ```
 from validate_email import validate
-is_valid = validate(email_address='example@example.com', check_format=True, check_blacklist=True, check_dns=True, dns_timeout=10, check_smtp=True, smtp_timeout=10, smtp_helo_host='my.host.name', smtp_from_address='my@from.addr.ess', smtp_debug=False)
+
+is_valid = validate(
+    email_address='example@example.com',
+    check_format=True,
+    check_blacklist=True,
+    check_dns=True,
+    dns_timeout=10,
+    check_smtp=True,
+    smtp_timeout=10,
+    smtp_helo_host='my.host.name',
+    smtp_from_address='my@from.addr.ess',
+    smtp_debug=False)
 ```
 
 ### Parameters
@@ -46,20 +57,17 @@ is_valid = validate(email_address='example@example.com', check_format=True, chec
 
 ### Result
 
-The function `validate_email()` returns the following results:
+The function `validate()` returns the following results:
 
-`True`
-  All requested checks were successful for the given email address.
+`True` All requested checks were successful for the given email address.
 
-`False`
-  At least one of the requested checks failed for the given email address.
+`False` At least one of the requested checks failed for the given email address.
 
-`None`
-  None of the requested checks failed, but at least one of them yielded an ambiguous result. Currently, the SMTP check is the only check which can actually yield an ambigous result.
+`None` None of the requested checks failed, but at least one of them yielded an ambiguous result. Currently, the SMTP check is the only check which can actually yield an ambigous result.
 
 ## Getting more information
 
-The function `validate_or_fail()` works exactly like `validate`, except that it raises an exception in the case of validation failure and ambiguous result instead of returning `False` or `None`, respectively.
+The function `validate_or_fail()` works exactly like `validate()`, except that it raises an exception in the case of validation failure and ambiguous result instead of returning `False` or `None`, respectively.
 
 All these exceptions descend from `EmailValidationError`. Please see below for the exact exceptions raised by the various checks. Note that all exception classes are defined in the module `validate_email.exceptions`.
 
@@ -91,23 +99,18 @@ First, a DNS query is issued for the email address' domain to retrieve a list of
 
 On failure of this check, `validate_or_fail()` raises one of the following exceptions, all of which descend from `DNSError`:
 
-**`DomainNotFoundError`**
-  The domain of the email address cannot be found at all.
+**`DomainNotFoundError`** The domain of the email address cannot be found at all.
 
-**`NoNameserverError`**
-  There is no nameserver for the domain.
+**`NoNameserverError`** There is no nameserver for the domain.
 
-**`DNSTimeoutError`**
-  A timeout occured when querying the nameserver. Note that the timeout period can be changed with the `dns_timeout` parameter.
+**`DNSTimeoutError`** A timeout occured when querying the nameserver. Note that the timeout period can be changed with the `dns_timeout` parameter.
 
-**`DNSConfigurationError`**
-  The nameserver is misconfigured.
+**`DNSConfigurationError`** The nameserver is misconfigured.
 
-**`NoMXError`**
-  The nameserver does not list any MX records for the domain.
+**`NoMXError`** The nameserver does not list any MX records for the domain.
 
-**`NoValidMXError`**
-  The nameserver lists MX records for the domain, but none of them is valid.
+**`NoValidMXError`** The nameserver lists MX records for the domain, but none of them is valid.
+
 
 #### `check_smtp`
 
@@ -127,16 +130,14 @@ If there is more than one valid MX record for the domain, they are tried in orde
 
 On failure of this check or on ambiguous result, `validate_or_fail()` raises one of the following exceptions, all of which descend from `SMTPError`:
 
-**`AddressNotDeliverableError`**
-  The SMTP server permanently refused the email address. Technically, this means that the server replied to the `RCPT TO` command with a code 5xx response.
+**`AddressNotDeliverableError`** The SMTP server permanently refused the email address. Technically, this means that the server replied to the `RCPT TO` command with a code 5xx response.
 
-**`SMTPCommunicationError`**
-  The SMTP server refused to even let us get to the point where we could ask it about the email address. Technically, this means that the server sent a code 5xx response either immediately after connection, or as a reply to the `EHLO` (or `HELO`) or `MAIL FROM` commands.
+**`SMTPCommunicationError`** The SMTP server refused to even let us get to the point where we could ask it about the email address. Technically, this means that the server sent a code 5xx response either immediately after connection, or as a reply to the `EHLO` (or `HELO`) or `MAIL FROM` commands.
 
-**`SMTPTemporaryError`**
-  A temporary error occured during the check for all available MX servers. This is considered an ambigous check result. For example, greylisting is a frequent cause for this.
+**`SMTPTemporaryError`** A temporary error occured during the check for all available MX servers. This is considered an ambigous check result. For example, greylisting is a frequent cause for this.
 
 All of the above three exceptions provide further detail about the error response(s) in the exception's instance variable `error_messages`.
+
 
 ### Update data source
 
@@ -155,5 +156,6 @@ update_builtin_blacklist(force: bool = False, background: bool = True,
 `background`: starts the update in a ``Thread`` so it won't make your code hang while it's updating. If you set this to true, the function will return the Thread used for starting the update so you can ``join()`` it if necessary.
 
 `callback`: An optional `Callable` (function/method) to be called when the update is done.
+
 
 ### [Read the FAQ](https://github.com/containerpi/email-validate/blob/master/FAQ.md)

@@ -5,7 +5,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='email-validate',
-    version='1.0.6',
+    version='1.0.8',
     packages=find_packages(exclude=['tests']),
     package_data={"": ["data/emails_filtered.txt"]},
     include_package_data=True,
