@@ -10,7 +10,7 @@ setup(
     package_data={"": ["data/emails_filtered.txt"]},
     include_package_data=True,
     # exclude_package_data={"": ["notify.py"]},
-    install_requires=['dnspython~=2.0', 'idna~=3.0', 'filelock~=3.0'],
+    install_requires=['dnspython~=2.0', 'idna<3.0', 'filelock~=3.0'],
     author='CPILab',
     author_email='hello@containerpi.com',
     description=('Email validator with regex, blacklisted domains and SMTP checking.'),
