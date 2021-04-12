@@ -166,6 +166,16 @@ update_builtin_blacklist(force: bool = False, background: bool = True,
 
 `callback`: An optional `Callable` (function/method) to be called when the update is done.
 
+
+### How to find the blacklist data directory
+
+```
+In [4]: import email_validate
+In [5]: email_validate.__file__
+Out[5]: '/PATH/TO/lib/python3.7/site-packages/email_validate/__init__.py'
+
+```
+
 ### TODO
 
 * fixed domainblacklist data source auto update error.
