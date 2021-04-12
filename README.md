@@ -172,7 +172,7 @@ update_builtin_blacklist(force: bool = False, background: bool = True,
 ```
 In [4]: import email_validate
 In [5]: email_validate.__file__
-Out[5]: '/PATH/TO/lib/python3.7/site-packages/email_validate/__init__.py'
+Out[5]: '/<PATH-TO>/site-packages/email_validate/__init__.py'
 
 ```
 
